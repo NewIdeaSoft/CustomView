@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".ContactsIndexViewActivity">
         </activity>
+        <activity android:name=".SlideMenuActivity">
+        </activity>
     </application>
 
 </manifest>

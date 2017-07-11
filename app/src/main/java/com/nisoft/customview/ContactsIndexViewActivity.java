@@ -88,6 +88,36 @@ public class ContactsIndexViewActivity extends AppCompatActivity {
         for (String name : mContacts) {
             mContactList.add(new Contact(name));
         }
+        mContactList.add(new Contact("张晓飞"));
+        mContactList.add(new Contact("杨光福"));
+        mContactList.add(new Contact("胡继群"));
+        mContactList.add(new Contact("刘畅"));
+        mContactList.add(new Contact("钟泽兴"));
+        mContactList.add(new Contact("尹革新"));
+        mContactList.add(new Contact("安传鑫"));
+        mContactList.add(new Contact("张骞壬"));
+        mContactList.add(new Contact("温松"));
+        mContactList.add(new Contact("李凤秋"));
+        mContactList.add(new Contact("刘甫"));
+        mContactList.add(new Contact("娄全超"));
+        mContactList.add(new Contact("张猛"));
+        mContactList.add(new Contact("王英杰"));
+        mContactList.add(new Contact("李振南"));
+        mContactList.add(new Contact("孙仁政"));
+        mContactList.add(new Contact("唐春雷"));
+        mContactList.add(new Contact("牛鹏伟"));
+        mContactList.add(new Contact("姜宇航"));
+        mContactList.add(new Contact("刘挺"));
+        mContactList.add(new Contact("张洪瑞"));
+        mContactList.add(new Contact("张建忠"));
+        mContactList.add(new Contact("侯亚帅"));
+        mContactList.add(new Contact("刘帅"));
+        mContactList.add(new Contact("乔竞飞"));
+        mContactList.add(new Contact("徐雨健"));
+        mContactList.add(new Contact("吴亮"));
+        mContactList.add(new Contact("王兆霖"));
+        mContactList.add(new Contact("阿三"));
+//排序
         Collections.sort(mContactList, new Comparator<Contact>() {
             @Override
             public int compare(Contact o1, Contact o2) {

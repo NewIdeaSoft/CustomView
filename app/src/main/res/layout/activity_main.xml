@@ -26,4 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="联系人索引"/>
+    <Button
+        android:id="@+id/btn_main_slide_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ListView侧滑菜单"/>
 </LinearLayout>
