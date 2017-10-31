@@ -2,6 +2,7 @@ package com.nisoft.youkumenu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -31,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isLevel2Visible) {
                     isLevel2Visible =false;
-                    AnimationTools.hideView(rl_level2,0);
+                    ObjectAnimationTools.hideView(rl_level2,0);
                     if(isLevel3Visible) {
                         isLevel3Visible=false;
-                        AnimationTools.hideView(rl_level3,200);
+                        ObjectAnimationTools.hideView(rl_level3,200);
                     }
                 }else {
                     isLevel2Visible =true;
-                    AnimationTools.showView(rl_level2,0);
+                    ObjectAnimationTools.showView(rl_level2,0);
                 }
             }
         });
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isLevel3Visible) {
                     isLevel3Visible = false;
-                    AnimationTools.hideView(rl_level3,0);
+                    ObjectAnimationTools.hideView(rl_level3,0);
                 }else{
                     isLevel3Visible = true;
-                    AnimationTools.showView(rl_level3,0);
+                    ObjectAnimationTools.showView(rl_level3,0);
                 }
             }
         });
@@ -62,5 +63,28 @@ public class MainActivity extends AppCompatActivity {
         rl_level3 = (RelativeLayout)findViewById(R.id.rl_level3);
         rl_level2 = (RelativeLayout)findViewById(R.id.rl_level2);
         rl_level1 = (RelativeLayout)findViewById(R.id.rl_level1);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_MENU&&event.getRepeatCount()==0) {
+            if(isLevel1Visible) {
+                isLevel1Visible = false;
+                ObjectAnimationTools.hideView(rl_level1,0);
+                if(isLevel2Visible) {
+                    isLevel2Visible = false;
+                    ObjectAnimationTools.hideView(rl_level2,200);
+                    if(isLevel3Visible) {
+                        isLevel3Visible = false;
+                        ObjectAnimationTools.hideView(rl_level3,200);
+                    }
+                }
+            }else{
+                isLevel1Visible = true;
+                ObjectAnimationTools.showView(rl_level1,0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
