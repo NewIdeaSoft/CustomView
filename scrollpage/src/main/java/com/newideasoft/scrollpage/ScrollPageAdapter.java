@@ -2,8 +2,10 @@ package com.newideasoft.scrollpage;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -24,27 +26,45 @@ public class ScrollPageAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container, position);
+        ImageView imageView = new ImageView(mContext);
+        final int realPosition = position%mPageDatas.size();
+        imageView.setImageResource(mPageDatas.get(realPosition).getImageResouce());
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageEventListener.onImageClick(realPosition);
+            }
+        });
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                return mImageEventListener.onImageTouch(v, event);
+            }
+        });
+        container.addView(imageView);
+        return imageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
+        container.removeView((View) object);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return Integer.MAX_VALUE;
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return view==object;
     }
 
     public interface ImageEventListener {
-        void onImageTouch();
+        boolean onImageTouch(View v, MotionEvent event);
 
-        void onImageClick();
+        void onImageClick(int position);
     }
 }

@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CustomView.iml" filepath="$PROJECT_DIR$/CustomView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CustomView.iml" filepath="$PROJECT_DIR$/CustomView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidlib/androidlib.iml" filepath="$PROJECT_DIR$/androidlib/androidlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/popupwindow/popupwindow.iml" filepath="$PROJECT_DIR$/popupwindow/popupwindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/scrollpage/scrollpage.iml" filepath="$PROJECT_DIR$/scrollpage/scrollpage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/youkumenu/youkumenu.iml" filepath="$PROJECT_DIR$/youkumenu/youkumenu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scrollpage/scrollpage.iml" filepath="$PROJECT_DIR$/scrollpage/scrollpage.iml" />
       <module fileurl="file://$PROJECT_DIR$/youkumenu/youkumenu.iml" filepath="$PROJECT_DIR$/youkumenu/youkumenu.iml" />
     </modules>
   </component>

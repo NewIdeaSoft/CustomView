@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/ll_scroll_page_points"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:padding="4dp">
         </LinearLayout>
     </LinearLayout>
 

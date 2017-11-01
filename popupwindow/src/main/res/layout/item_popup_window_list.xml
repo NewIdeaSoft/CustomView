@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="4dp"
+    android:background="@drawable/listview_background">
+
+    <ImageView
+        android:id="@+id/iv_item_popup_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/user"
+        android:layout_margin="4dp"/>
+
+    <TextView
+        android:id="@+id/tv_item_popup_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="月亮和六便士"
+        android:textColor="@android:color/black"/>
+
+    <ImageView
+        android:id="@+id/iv_item_popup_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete"/>
+</LinearLayout>
