@@ -1,1 +1,1 @@
-include ':app', ':youkumenu', ':scrollpage', ':popupwindow', ':androidlib'
+include ':app', ':youkumenu', ':scrollpage', ':popupwindow', ':androidlib', ':switchbuttondemo'
