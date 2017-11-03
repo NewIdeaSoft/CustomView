@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.newideasoft.switchbuttondemo.MainActivity">
@@ -10,5 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
+    <com.nisoft.androidlib.view.CusProperty
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cus_age="30"
+        app:cus_name="Yang"
+        app:cus_background = "@drawable/switch_background"
+        />
 
 </RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CusProperty"/>
+    <attr name="cus_age" format="integer"/>
+    <attr name="cus_name" format="string"/>
+    <attr name="cus_background" format="color|reference"/>
+</resources>
