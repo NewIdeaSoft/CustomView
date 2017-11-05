@@ -7,12 +7,31 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nisoft.androidlib.utils.CusScroller;
+
 /**
  * Created by Administrator on 2017/11/3.
  */
 
 public class CusViewPager extends ViewGroup {
+    /**
+     * 手势识别器
+     * 使用步骤：
+     * 1.定义手势识别器
+     * 2.实例化：实现OnGestureListener接口
+     * 3.将触摸事件传递给手势识别器
+     */
     private GestureDetector mDetector;
+    /**
+     * 触摸事件起始X坐标
+     */
+    private float mSlideStartX;
+    /**
+     * 当前显示页面的位置索引,0为起始页面
+     */
+    private int mCurrentIndex = 0;
+
+    private CusScroller mScroller;
 
     public CusViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -20,6 +39,8 @@ public class CusViewPager extends ViewGroup {
     }
 
     private void init(Context context) {
+        mScroller = new CusScroller();
+        //实例化手势识别器
         mDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -33,7 +54,8 @@ public class CusViewPager extends ViewGroup {
 
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                return super.onScroll(e1, e2, distanceX, distanceY);
+                scrollBy((int) distanceX,0);
+                return true;
             }
 
             @Override
@@ -54,18 +76,44 @@ public class CusViewPager extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
-//        mDetector.onTouchEvent(event);
+        //将触摸事件传递给手势识别器
+        mDetector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN :
-
+                mSlideStartX = event.getX();
                 break;
             case MotionEvent.ACTION_MOVE :
 
                 break;
             case MotionEvent.ACTION_UP :
-
+                float slideEndX = event.getX();
+                float distanceX = slideEndX - mSlideStartX;
+                int templateIndex = mCurrentIndex;
+                if(Math.abs(distanceX)>getWidth()/2) {
+                    if(distanceX>getWidth()/2) {
+                        templateIndex-- ;
+                    }else{
+                        templateIndex++;
+                    }
+                }
+                scrollToPage(templateIndex);
                 break;
         }
         return true;
+    }
+
+    /**
+     * 作用:滚动到指定页面
+     * @param templateIndex 目标页面的位置索引
+     */
+    private void scrollToPage(int templateIndex) {
+        if(templateIndex <0) {
+            templateIndex = 0;
+        }else if(templateIndex>getChildCount()-1) {
+            templateIndex = getChildCount()-1;
+        }
+//        scrollTo(templateIndex*getWidth(),0);
+//        mScroller.startScroll();
+        mCurrentIndex = templateIndex;
     }
 }
