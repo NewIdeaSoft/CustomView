@@ -31,7 +31,10 @@ public class CusViewPager extends ViewGroup {
      */
     private int mCurrentIndex = 0;
 
-    private CusScroller mScroller;
+    private CusScroller mCusScroller;
+//    private Scroller mScroller;
+
+    private onPageChangedListener mOnPageChangedListener;
 
     public CusViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,7 +42,8 @@ public class CusViewPager extends ViewGroup {
     }
 
     private void init(Context context) {
-        mScroller = new CusScroller();
+//        mScroller = new Scroller(context);
+        mCusScroller = new CusScroller();
         //实例化手势识别器
         mDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override
@@ -112,8 +116,46 @@ public class CusViewPager extends ViewGroup {
         }else if(templateIndex>getChildCount()-1) {
             templateIndex = getChildCount()-1;
         }
-//        scrollTo(templateIndex*getWidth(),0);
-//        mScroller.startScroll();
+        if(mOnPageChangedListener!=null&&templateIndex!=mCurrentIndex) {
+            mOnPageChangedListener.onPageChanged(templateIndex);
+        }
         mCurrentIndex = templateIndex;
+//        mScroller.startScroll(getScrollX(),0,mCurrentIndex*getWidth()-getScrollX(),0);
+        mCusScroller.startScroll(getScrollX(),0,mCurrentIndex*getWidth()-getScrollX(),0,200);
+        invalidate();
+    }
+
+    @Override
+    public void computeScroll() {
+//        if(mScroller.computeScrollOffset()) {
+
+
+        if(mCusScroller.computeScrollOffset()) {
+            scrollTo((int) mCusScroller.getCurrentX(), (int) mCusScroller.getCurrentY());
+            invalidate();
+        }
+    }
+
+    /**
+     * 用与监听页面变化的接口
+     */
+    public interface onPageChangedListener{
+        /**
+         * 当页面变化时调用该方法
+         * @param position
+         */
+        void onPageChanged(int position);
+    }
+
+    public void setOnPageChangedListener(onPageChangedListener onPageChangedListener) {
+        mOnPageChangedListener = onPageChangedListener;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        for (int i= 0 ;i<getChildCount();i++){
+            getChildAt(i).measure(widthMeasureSpec,heightMeasureSpec);
+        }
     }
 }
