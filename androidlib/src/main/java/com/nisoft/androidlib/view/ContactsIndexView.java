@@ -16,7 +16,10 @@ import android.view.View;
  */
 
 public class ContactsIndexView extends View {
-    private String[] mIndexWords = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+    private String[] mIndexWords = {"A", "B", "C", "D", "E", "F", "G"
+            , "H", "I", "J", "K", "L", "M", "N"
+            , "O", "P", "Q", "R", "S", "T"
+            , "U", "V", "W", "X", "Y", "Z"};
     private int mTouchedIndex = -1;
     private OnIndexChangedListener mOnIndexChangedListener;
     private Paint mTextPaint;
@@ -35,10 +38,10 @@ public class ContactsIndexView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mItemHeight = getHeight()/mIndexWords.length;
+        mItemHeight = getHeight() / mIndexWords.length;
         mItemWidth = getWidth();
         Rect rect = new Rect();
-        mTextPaint.getTextBounds(mIndexWords[0],0,1,rect);
+        mTextPaint.getTextBounds(mIndexWords[0], 0, 1, rect);
         mTextHeight = rect.height();
         mTextWidth = rect.width();
     }
@@ -46,24 +49,27 @@ public class ContactsIndexView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0;i<mIndexWords.length;i++){
+        for (int i = 0; i < mIndexWords.length; i++) {
             String word = mIndexWords[i];
             Rect rect = new Rect();
-            mTextPaint.getTextBounds(word,0,1,rect);
-            float wordX = mItemWidth/2 - mTextWidth/2;
-            float wordY = mItemHeight*(i+0.5f)+mTextHeight/2;
-            canvas.drawText(word,wordX,wordY,mTextPaint);
+            mTextPaint.getTextBounds(word, 0, 1, rect);
+            float wordX = mItemWidth / 2 - mTextWidth / 2;
+            float wordY = mItemHeight * (i + 0.5f) + mTextHeight / 2;
+            canvas.drawText(word, wordX, wordY, mTextPaint);
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                int touchingIndex = (int) (event.getY()/ mItemHeight);
-                if(touchingIndex!=mTouchedIndex) {
+                int touchingIndex = (int) (event.getY() / mItemHeight);
+                if(touchingIndex>=mIndexWords.length) {
+                    touchingIndex = mIndexWords.length-1;
+                }
+                if (touchingIndex != mTouchedIndex) {
                     mTouchedIndex = touchingIndex;
                     mOnIndexChangedListener.onIndexChanged(mIndexWords[mTouchedIndex]);
                 }
@@ -81,7 +87,6 @@ public class ContactsIndexView extends View {
 
     public interface OnIndexChangedListener {
         /**
-         *
          * @param touchedIndexWord 触摸到的索引
          */
         void onIndexChanged(String touchedIndexWord);
