@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".CusViewPagerActivity">
         </activity>
+        <activity android:name=".ContactsIndexViewActivity">
+        </activity>
     </application>
 
 </manifest>

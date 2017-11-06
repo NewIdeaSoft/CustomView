@@ -35,6 +35,8 @@ public class CusViewPager extends ViewGroup {
 //    private Scroller mScroller;
 
     private onPageChangedListener mOnPageChangedListener;
+    private float mDownX;
+    private float mDownY;
 
     public CusViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -157,5 +159,31 @@ public class CusViewPager extends ViewGroup {
         for (int i= 0 ;i<getChildCount();i++){
             getChildAt(i).measure(widthMeasureSpec,heightMeasureSpec);
         }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+
+        mDetector.onTouchEvent(ev);
+        boolean result = false;
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                mDownX = ev.getX();
+                mDownY = ev.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float endX = ev.getX();
+                float endY = ev.getY();
+                float distanceX = Math.abs(endX- mDownX);
+                float distanceY = Math.abs(endY- mDownY);
+                if(distanceX>distanceY&&distanceX>3) {
+                    result = true;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+
+                break;
+        }
+        return result;
     }
 }

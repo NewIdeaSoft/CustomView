@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_main_switch;
     private Button btn_main_cus_property;
     private Button btn_main_cus_viewpager;
+    private Button btn_main_cus_contacts_index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +41,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_main_cus_contacts_index.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ContactsIndexViewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
         btn_main_switch = (Button)findViewById(R.id.btn_main_switch);
         btn_main_cus_property = (Button)findViewById(R.id.btn_main_cus_property);
         btn_main_cus_viewpager = (Button)findViewById(R.id.btn_main_cus_viewpager);
+        btn_main_cus_contacts_index = (Button)findViewById(R.id.btn_main_cus_contacts_index);
     }
 }

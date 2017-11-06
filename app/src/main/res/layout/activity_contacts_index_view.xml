@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_contacts_index">
+
+    </ListView>
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:textSize="35sp"
+        android:text="A"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/darker_gray"
+        android:id="@+id/tv_contacts_index_word"
+        android:layout_centerInParent="true"/>
+    <com.nisoft.androidlib.view.ContactsIndexView
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:id="@+id/civ_index"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"/>
+</RelativeLayout>

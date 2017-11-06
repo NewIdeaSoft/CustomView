@@ -2,6 +2,7 @@ package com.nisoft.customview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.nisoft.androidlib.viewgroup.CusViewPager;
@@ -23,5 +24,7 @@ public class CusViewPagerActivity extends AppCompatActivity {
             imageView.setBackgroundResource(PHOTO_ID_S[i]);
             cus_view_pager.addView(imageView);
         }
+        View view  = View.inflate(this,R.layout.item_view_pager_test,null);
+        cus_view_pager.addView(view,2);
     }
 }
