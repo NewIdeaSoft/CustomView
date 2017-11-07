@@ -39,6 +39,7 @@ public class ContactsIndexView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mItemHeight = getHeight() / mIndexWords.length;
+        mTextPaint.setTextSize(mItemHeight/2);
         mItemWidth = getWidth();
         Rect rect = new Rect();
         mTextPaint.getTextBounds(mIndexWords[0], 0, 1, rect);
@@ -68,6 +69,8 @@ public class ContactsIndexView extends View {
                 int touchingIndex = (int) (event.getY() / mItemHeight);
                 if(touchingIndex>=mIndexWords.length) {
                     touchingIndex = mIndexWords.length-1;
+                }else if(touchingIndex<0) {
+                    touchingIndex = 0;
                 }
                 if (touchingIndex != mTouchedIndex) {
                     mTouchedIndex = touchingIndex;

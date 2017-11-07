@@ -18,6 +18,7 @@ public class SlideMenuActivity extends AppCompatActivity {
     private ListView lv_main;
     private SlideMenuAdapter mAdapter;
     private ArrayList<String> mData;
+    private SlideMenuLayout mOpenedItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +70,29 @@ public class SlideMenuActivity extends AppCompatActivity {
             holder.menuView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ((SlideMenuLayout)v.getParent()).closeMenu();
                     mData.remove(position);
                     notifyDataSetChanged();
+                }
+            });
+            menuItem.setMenuStateChangedListener(new SlideMenuLayout.OnMenuStateChangedListener() {
+                @Override
+                public void onMenuOpened(SlideMenuLayout layout) {
+                    mOpenedItem = layout;
+                }
+
+                @Override
+                public void onMenuClosed(SlideMenuLayout layout) {
+                    if(mOpenedItem == layout) {
+                        mOpenedItem = null;
+                    }
+                }
+
+                @Override
+                public void onDown(SlideMenuLayout layout) {
+                    if(mOpenedItem!=null&&mOpenedItem!=layout) {
+                        mOpenedItem.closeMenu();
+                    }
                 }
             });
             String content = mData.get(position);
